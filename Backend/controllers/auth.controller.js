@@ -63,7 +63,6 @@ export const login = async (req, res) => {
         const user = await User.findOne({ username });
         const confirmpassword = await bcrpyt.compare(password, user?.password || "")  // user?.password is bcs if user if not find in that case without this it will give error not it return ""
 
-        console.log("passowrd",confirmpassword);
         if (!user || !confirmpassword) {
             console.log("error while login username or password incorrect");
             res.status(400).json({ error: "username or password is incorrect" });
@@ -84,7 +83,7 @@ export const login = async (req, res) => {
     }
 }
 
-export const logout = (req, res) => {
+export const logout = (req, res) => { 
     try{
         res.cookie("jwt", "",{
             maxAge:0
