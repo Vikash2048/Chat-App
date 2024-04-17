@@ -4,9 +4,9 @@ import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 export const signup = async (req, res) => {
     try {
-        const { fullname, username, password, confirmpassword, gender } = req.body;
-
-        if (password !== confirmpassword) {
+        const { fullname, username, password, confirmPassword, gender } = req.body;
+        console.log(fullname, username, password, confirmPassword, gender)
+        if (password !== confirmPassword) {
             return res.status(400).json({ error: "password doesn't match." })
         }
 
@@ -66,10 +66,12 @@ export const login = async (req, res) => {
         if (!user || !confirmpassword) {
             console.log("error while login username or password incorrect");
             res.status(400).json({ error: "username or password is incorrect" });
+            return;
         }
 
         generateTokenAndSetCookie(user._id, res);
 
+        console.log("user logged in successfully")
         res.status(200).json({
             _id: user._id,
             fullname: user.fullname,
