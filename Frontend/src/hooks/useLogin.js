@@ -22,7 +22,6 @@ const useLogin = () => {
             if(res.error){
                 throw new Error(res.error);
             }
-            console.log(res);
 
             localStorage.setItem("logged-user",JSON.stringify(loginData));
             setAuthUser(loginData);

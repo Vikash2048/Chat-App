@@ -30,7 +30,7 @@ export const sendMessage = async (req, res) => {
 
         await Promise.all([conversation.save(), newMessage.save()]);  // this will optimise save by parallel processing
 
-        res.status(201).json({ message: "Message send successfully / send new msg" });
+        res.status(201).json(newMessage);
 
     } catch (error) {
         console.log("error while sending message in message controller :", error.message);
